@@ -233,3 +233,4 @@ D:\开发\WpSpider\obj\Release\netcoreapp3.1\linux-x64\WpSpider.AssemblyInfo.cs
 D:\开发\WpSpider\obj\Release\netcoreapp3.1\linux-x64\WpSpider.csproj.CopyComplete
 D:\开发\WpSpider\obj\Release\netcoreapp3.1\linux-x64\WpSpider.dll
 D:\开发\WpSpider\obj\Release\netcoreapp3.1\linux-x64\WpSpider.pdb
+D:\开发\WpSpider\bin\Release\netcoreapp3.1\linux-x64\Config\maozhuamh.json

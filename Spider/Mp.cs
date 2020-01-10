@@ -35,8 +35,7 @@ namespace WpSpider.Spider
         public void Go()
         {
             var urls = configuration.GetSection("urls").GetChildren();
-            var filters = configuration.GetSection("filters").GetChildren();
-
+            var filters = configuration.GetSection("filters").GetChildren();           
 
             foreach (var item in urls)
             {
@@ -62,7 +61,6 @@ namespace WpSpider.Spider
 
                     }
 
-
                     var imgs = doc.QuerySelectorAll("#js_content img");
                     var date = DateTime.Now.ToString("yyyy-MM-dd");
                     var downloadDir = Path.Combine(webroot, "wp-content/uploads/" + date); //拼接图片下载目录
@@ -79,6 +77,7 @@ namespace WpSpider.Spider
                         img.Source = Path.Combine("/wp-content/uploads/" + date, fileName);//设置img的src为下载路径
                         img.RemoveAttribute("data-src"); //移除data-src属性
                     }
+
 
                     var addConfigs = configuration.GetSection("add").GetChildren();
                     if (addConfigs.Count() > 0)

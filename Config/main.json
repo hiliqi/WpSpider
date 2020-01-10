@@ -1,8 +1,8 @@
 {
   "dbConnstr": "server=localhost;database=wp;user=root;password=root;Character Set=utf8 ", //网站数据库连接字符串
-  "webroot": "F:/wordpress", //网站物理根目录
+  "webroot": "D:/wordpress", //网站物理根目录
   "prefix": "wp_", //数据表前缀
-  "excutor": "Manhuawuu", //可配置项：Mp, 多个选项用|隔开
+  "excutor": "Maozhuamh", //可配置项：Mp, 多个选项用|隔开
   "repeat": "false",
   "remoteLink": "false" //true则是盗链远程图片，false则是下载图片到本地
 }

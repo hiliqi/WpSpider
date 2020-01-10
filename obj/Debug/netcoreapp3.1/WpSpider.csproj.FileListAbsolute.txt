@@ -48,3 +48,5 @@ D:\开发\WpSpider\obj\Debug\netcoreapp3.1\WpSpider.AssemblyInfo.cs
 D:\开发\WpSpider\obj\Debug\netcoreapp3.1\WpSpider.csproj.CopyComplete
 D:\开发\WpSpider\obj\Debug\netcoreapp3.1\WpSpider.dll
 D:\开发\WpSpider\obj\Debug\netcoreapp3.1\WpSpider.pdb
+D:\开发\WpSpider\obj\Debug\netcoreapp3.1\WpSpider.csprojAssemblyReference.cache
+D:\开发\WpSpider\bin\Debug\netcoreapp3.1\Config\maozhuamh.json

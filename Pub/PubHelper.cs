@@ -29,54 +29,46 @@ namespace WpSpider.Pub
         {
             try
             {
-                var post = pubContext.Posts.Where(p => p.PostTitle == title).FirstOrDefault();
-                if (post == null) //说明没有重复的标题
+                var post = new Post()
                 {
-                    post = new Post()
+                    PostAuthor = author,
+                    PostDate = DateTime.Now.ToLocalTime(),
+                    PostDateGmt = DateTime.Now.ToLocalTime(),
+                    PostContent = html,
+                    PostMod = DateTime.Now.ToLocalTime(),
+                    PostModGmt = DateTime.Now.ToLocalTime(),
+                    PostTitle = title,
+                    PostStatus = "publish",
+                    PingStatus = "closed",
+                    PostExcerpt = string.Empty,
+                    ToPing = string.Empty,
+                    Pinged = string.Empty,
+                    PostName = Guid.NewGuid().ToString(),
+                    PostContentFilter = string.Empty
+                };
+                using (var tran = pubContext.Database.BeginTransaction())
+                {
+                    try
                     {
-                        PostAuthor = author,
-                        PostDate = DateTime.Now.ToLocalTime(),
-                        PostDateGmt = DateTime.Now.ToLocalTime(),
-                        PostContent = html,
-                        PostMod = DateTime.Now.ToLocalTime(),
-                        PostModGmt = DateTime.Now.ToLocalTime(),
-                        PostTitle = title,
-                        PostStatus = "publish",
-                        PingStatus = "closed",
-                        PostExcerpt = string.Empty,
-                        ToPing = string.Empty,
-                        Pinged = string.Empty,
-                        PostName = Guid.NewGuid().ToString(),
-                        PostContentFilter = string.Empty
-                    };
-                    using (var tran = pubContext.Database.BeginTransaction())
-                    {
-                        try
+                        pubContext.Posts.Add(post);
+                        pubContext.SaveChanges();
+                        var relationships = new Relationships()
                         {
-                            pubContext.Posts.Add(post);
-                            pubContext.SaveChanges();
-                            var relationships = new Relationships()
-                            {
-                                PostId = post.Id,
-                                CateId = category
-                            };
-                            pubContext.Relationships.Add(relationships);
-                            pubContext.SaveChanges();
-                            tran.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                            File.AppendAllText("err.txt", ex.Message + Environment.NewLine);
-                            tran.Rollback();
-                        }
+                            PostId = post.Id,
+                            CateId = category
+                        };
+                        pubContext.Relationships.Add(relationships);
+                        pubContext.SaveChanges();
+                        tran.Commit();
                     }
-                    Console.WriteLine("成功发布文章" + title);
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        File.AppendAllText("err.txt", ex.Message + Environment.NewLine);
+                        tran.Rollback();
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("文章" + title + "已经存在");
-                }
+                Console.WriteLine("成功发布文章" + title);
             }
             catch (Exception ex)
             {
