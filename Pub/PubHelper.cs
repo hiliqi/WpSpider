@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using TinyPinyin.Core;
 using WpSpider.Model;
 
 namespace WpSpider.Pub
@@ -20,7 +22,7 @@ namespace WpSpider.Pub
         {
             var builder = new ConfigurationBuilder()
             .SetBasePath(Path.Combine(AppContext.BaseDirectory))
-            .AddJsonFile("Config/main.json", optional: true, reloadOnChange: true);
+            .AddJsonFile("Config/Main.json", optional: true, reloadOnChange: true);
             configuration = builder.Build();
             webroot = configuration.GetSection("webroot").Value;
         }
@@ -52,13 +54,14 @@ namespace WpSpider.Pub
                     {
                         pubContext.Posts.Add(post);
                         pubContext.SaveChanges();
+                        long postId = post.Id;
                         var relationships = new Relationships()
                         {
-                            PostId = post.Id,
+                            PostId = postId,
                             CateId = category
                         };
                         pubContext.Relationships.Add(relationships);
-                        pubContext.SaveChanges();
+                        pubContext.SaveChanges();                        
                         tran.Commit();
                     }
                     catch (Exception ex)

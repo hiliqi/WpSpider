@@ -84,11 +84,7 @@ namespace WpSpider.Spider
                     Directory.CreateDirectory(downloadDir);
                 }
                 foreach (IHtmlImageElement img in imgs)
-                {
-                    if (img.GetAttribute("src") == "http://www.manhuawuu.com/wp-content/uploads/2018/10/微信公众号.jpg")
-                    {
-                        img.Remove();
-                    }
+                {                  
                     if(remoteLink == "false")
                     {
                         var imgUrl = img.GetAttribute("src");
@@ -99,7 +95,12 @@ namespace WpSpider.Spider
                     }                  
                     img.RemoveAttribute("srcset"); //移除data-src属性
                 }
-                var content = doc.QuerySelector(".article-body").OuterHtml.Replace("一本正经的漫画", "拿发阅读");
+                var content = doc.QuerySelector(".article-body").OuterHtml;
+                var replaces = configuration.GetSection("replace").GetChildren();
+                foreach (var item in replaces)
+                {
+                    content = content.Replace(item["old"].ToString(), item["new"].ToString());
+                }
                 pubHelper.Post(title, content, category, author);
             }
             else

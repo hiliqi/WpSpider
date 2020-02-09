@@ -13,7 +13,7 @@ namespace WpSpider
         {
             var builder = new ConfigurationBuilder()
             .SetBasePath(Path.Combine(AppContext.BaseDirectory))
-            .AddJsonFile("Config/main.json", optional: true, reloadOnChange: true);
+            .AddJsonFile("Config/Main.json", optional: true, reloadOnChange: true);
             IConfiguration configuration = builder.Build();
             var classNames = configuration.GetSection("excutor").Value;
             string[] temp = classNames.Split("|", StringSplitOptions.RemoveEmptyEntries);

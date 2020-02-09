@@ -1,0 +1,25 @@
+{
+  "start": 1,
+  "last": 1,
+  "category": 1, //后台分类id
+  "author": 1, //后台作者id
+  "webroot": "d:/wordpress", //网站物理根目录
+  "remoteLink": "true",
+  "filters": [ //过滤代码，双引号中的HTML代码会逐个过滤
+    "div[class=\"article-paging\"]",
+     "strong"
+  ],
+  "add": [ //自定义插入的内容
+    //{
+    //  "parent": ".article ", //要插入的父元素的选择器代码
+    //  "tag": "p", //要插入的元素标签名
+    //  "content": "<p><span style=\"color: red;\">点击前往阅读全部章节</span></p>"
+    //}
+  ],
+  "replace": [ //自定义替换的内容
+    {
+      "old": "https://www.jjhanman.com/",
+      "new": "http://www.hahmh.cc/"
+    }
+  ]
+}

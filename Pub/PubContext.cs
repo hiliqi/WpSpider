@@ -15,12 +15,13 @@ namespace WpSpider.Pub
         {
             var builder = new ConfigurationBuilder()
               .SetBasePath(Path.Combine(AppContext.BaseDirectory))
-              .AddJsonFile("Config/main.json", optional: true, reloadOnChange: true);
+              .AddJsonFile("Config/Main.json", optional: true, reloadOnChange: true);
             configuration = builder.Build();
         }
 
         public DbSet<Post> Posts { get; set; }
         public DbSet<Relationships> Relationships { get; set; }
+        public DbSet<Terms> Terms { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,7 +33,8 @@ namespace WpSpider.Pub
         {
             var prefix = configuration.GetSection("prefix").Value;
             modelBuilder.Entity<Post>().ToTable(prefix + "posts").HasKey(p => p.Id);
-            modelBuilder.Entity<Relationships>().ToTable(prefix + "term_relationships").HasKey(r => r.PostId);        
+            modelBuilder.Entity<Relationships>().ToTable(prefix + "term_relationships").HasKey(r => r.PostId);
+            modelBuilder.Entity<Terms>().ToTable(prefix + "terms").HasKey(t => t.Id);
         }
 
     }
