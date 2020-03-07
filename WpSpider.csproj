@@ -6,13 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Config\Hupu.json" />
     <None Remove="Config\jjhanman.json" />
     <None Remove="Config\main.json" />
     <None Remove="Config\manhuawuu.json" />
     <None Remove="Config\maozhuamh.json" />
     <None Remove="Config\mp.json" />
-    <None Remove="Config\Zhibo8.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,12 +27,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\Mp.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Config\Hupu.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Config\Zhibo8.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -60,5 +60,3 @@ D:\开发\WpSpider\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 D:\开发\WpSpider\bin\Debug\netcoreapp3.1\AngleSharp.Js.dll
 D:\开发\WpSpider\bin\Debug\netcoreapp3.1\jint.dll
 D:\开发\WpSpider\obj\Debug\netcoreapp3.1\WpSpider.csprojAssemblyReference.cache
-D:\开发\WpSpider\bin\Debug\netcoreapp3.1\Config\Hupu.json
-D:\开发\WpSpider\bin\Debug\netcoreapp3.1\Config\Zhibo8.json

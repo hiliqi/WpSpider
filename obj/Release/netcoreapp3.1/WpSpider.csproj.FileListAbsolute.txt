@@ -60,4 +60,3 @@ D:\开发\WpSpider\bin\Release\netcoreapp3.1\Config\jjhanman.json
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\AngleSharp.Js.dll
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\jint.dll
-D:\开发\WpSpider\bin\Release\netcoreapp3.1\Config\Sina.json

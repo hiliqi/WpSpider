@@ -3,5 +3,5 @@
   "prefix": "wp_", //数据表前缀
   "domain": "http://hm.com/",
   "webroot": "d:/wordpress",
-  "excutor": "Zhibo8" //可配置项：Mp, 多个选项用|隔开
+  "excutor": "Manhuawuu" //可配置项：Mp, 多个选项用|隔开
 }
