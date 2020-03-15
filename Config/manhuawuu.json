@@ -1,5 +1,5 @@
 {
-  "cate": "xz", //采集的分类地址
+  "cate": "xy", //采集的分类地址
   "start": 1,
   "last": 1,
   "category": 1, //后台分类id

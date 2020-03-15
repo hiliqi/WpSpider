@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using WpSpider.Model;
 using WpSpider.Pub;
 
 namespace WpSpider.Spider
@@ -17,10 +18,9 @@ namespace WpSpider.Spider
         long author = 0;
         long category = 0;
         string webroot;
-        string remoteLink;
         PubHelper pubHelper = new PubHelper();
         WebClient wc = new WebClient();
-        PubContext pubContext = new PubContext();
+        SugarContext sugarContext = new SugarContext();
 
         public Manhuawuu()
         {
@@ -31,18 +31,19 @@ namespace WpSpider.Spider
             author = long.Parse(configuration.GetSection("author").Value);
             category = long.Parse(configuration.GetSection("category").Value);
             webroot = configuration.GetSection("webroot").Value;
-            remoteLink = configuration.GetSection("remoteLink").Value;
         }
 
         public void Go()
         {
-            try
-            {
+            //try
+            //{
                 var cate = configuration.GetSection("cate").Value;
                 var start = int.Parse(configuration.GetSection("start").Value);
                 var last = int.Parse(configuration.GetSection("last").Value);
                 var url = "http://www.manhuawuu.com/" + cate;
                 for (int i = start; i <= last; i++)
+                {
+                try
                 {
                     if (i > 1)
                     {
@@ -58,13 +59,20 @@ namespace WpSpider.Spider
                         GetContent(item.GetAttribute("href"));
                     }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.InnerException.Message);
+                    Console.WriteLine(ex.StackTrace);
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.InnerException.Message);
-                Console.WriteLine(ex.StackTrace);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    Console.WriteLine(ex.InnerException.Message);
+            //    Console.WriteLine(ex.StackTrace);
+            //}
         }
 
         public void GetContent(string url)
@@ -72,8 +80,12 @@ namespace WpSpider.Spider
             var html = ReqHelper.GetHtml(url);
             var parse = new HtmlParser();
             var doc = parse.ParseDocument(html);
-            var title = doc.QuerySelector("div.article-title a").TextContent;
-            var post = pubContext.Posts.Where(p => p.PostTitle == title).FirstOrDefault();
+            var title = doc.QuerySelector("div.article-title a").TextContent.Trim();
+            var list = doc.QuerySelectorAll(".article-meta-tags a").ToList();
+            var tags = new List<string>();
+            list.ForEach(l => tags.Add(l.TextContent.Trim()));
+            //var post = pubContext.Posts.Where(p => p.PostTitle == title).FirstOrDefault();
+            var post = sugarContext.Db.Queryable<Post>().Where(p => p.PostTitle == title).First();
             if (post == null)
             {
                 var imgs = doc.QuerySelectorAll(".article-body p img");
@@ -85,7 +97,7 @@ namespace WpSpider.Spider
                 }
                 foreach (IHtmlImageElement img in imgs)
                 {                  
-                    if(remoteLink == "false")
+                    if(bool.Parse(configuration.GetSection("remoteLink").Value))
                     {
                         var imgUrl = img.GetAttribute("src");
                         var fileName = Guid.NewGuid().ToString() + ".jpg";
@@ -96,12 +108,13 @@ namespace WpSpider.Spider
                     img.RemoveAttribute("srcset"); //移除data-src属性
                 }
                 var content = doc.QuerySelector(".article-body").OuterHtml;
+                content += doc.QuerySelector(".article-advertisement").OuterHtml;
                 var replaces = configuration.GetSection("replace").GetChildren();
                 foreach (var item in replaces)
                 {
                     content = content.Replace(item["old"].ToString(), item["new"].ToString());
                 }
-                pubHelper.Post(title, content, category, author);
+                pubHelper.Post(title, content, category, author, tags);
             }
             else
             {

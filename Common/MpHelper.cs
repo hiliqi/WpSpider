@@ -115,7 +115,7 @@ namespace WpSpider
                     var htmlStr = style + "<p></p>" + content;
 
                     var addConfig = configuration.GetSection("add").GetChildren();
-                    pubHelper.Post(title, htmlStr, category, author);
+                    pubHelper.Post(title, htmlStr, category, author, new List<string>());
                 }
                 catch (Exception ex)
                 {

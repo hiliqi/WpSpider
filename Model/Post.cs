@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -7,25 +8,26 @@ namespace WpSpider.Model
 {
     public class Post
     {
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public long Id { get; set; }
 
-        [Column("post_author")] //作者ID
+        [SugarColumn(ColumnName = "post_author")] //作者ID
         public long PostAuthor { get; set; }
 
-        [Column("post_date")] //发布日期
+        [SugarColumn(ColumnName = "post_date")] //发布日期
         public DateTime PostDate { get; set; }
 
-        [Column("post_date_gmt")] //发布日期GMT
+        [SugarColumn(ColumnName = "post_date_gmt")] //发布日期GMT
         public DateTime PostDateGmt { get; set; }
 
-        [Column("post_modified")] //修改日期
+        [SugarColumn(ColumnName = "post_modified")] //修改日期
         public DateTime PostMod { get; set; }
 
-        [Column("post_modified_gmt")] //修改日期GMT
+        [SugarColumn(ColumnName = "post_modified_gmt")] //修改日期GMT
         public DateTime PostModGmt { get; set; }
 
         private string postContent;
-        [Column("post_content")] //发布内容
+        [SugarColumn(ColumnName = "post_content")] //发布内容
         public string PostContent
         {
             get
@@ -39,7 +41,7 @@ namespace WpSpider.Model
         }
 
         private string postTitle;
-        [Column("post_title")] //标题
+        [SugarColumn(ColumnName = "post_title")] //标题
         public string PostTitle
         {
             get
@@ -53,7 +55,7 @@ namespace WpSpider.Model
         }
 
         private string postExcerpt;
-        [Column("post_excerpt")] //摘录
+        [SugarColumn(ColumnName = "post_excerpt")] //摘录
         public string PostExcerpt
         {
             get
@@ -66,22 +68,22 @@ namespace WpSpider.Model
             }
         }
 
-        [Column("post_status")]
+        [SugarColumn(ColumnName = "post_status")]
         public string PostStatus { get; set; }   
 
-        [Column("post_name")]
+        [SugarColumn(ColumnName = "post_name")]
         public string PostName { get; set; }
 
-        [Column("ping_status")]
+        [SugarColumn(ColumnName = "ping_status")]
         public string PingStatus { get; set; }     
 
-        [Column("to_ping")]
+        [SugarColumn(ColumnName = "to_ping")]
         public string ToPing { get; set; }
 
-        [Column("pinged")]
+        [SugarColumn(ColumnName = "pinged")]
         public string Pinged { get; set; }
 
-        [Column("post_content_filtered")]
+        [SugarColumn(ColumnName = "post_content_filtered")]
         public string PostContentFilter { get; set; }
     }
 }

@@ -6,24 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Config\jjhanman.json" />
     <None Remove="Config\main.json" />
     <None Remove="Config\manhuawuu.json" />
-    <None Remove="Config\maozhuamh.json" />
     <None Remove="Config\mp.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Config\jjhanman.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Config\Main.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\manhuawuu.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Config\maozhuamh.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\Mp.json">
@@ -34,12 +26,20 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.13.0" />
     <PackageReference Include="AngleSharp.Js" Version="0.13.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.19" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="RuPeng.Common.NetCore" Version="1.0.0" />
+    <PackageReference Include="sqlSugarCore" Version="5.0.0.11" />
     <PackageReference Include="TinyPinyin.Core.Standard" Version="1.0.0" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties config_4maozhuamh_1json__JsonSchema="http://json-schema.org/draft-04/schema" config_4jjhanman_1json__JsonSchema="http://json-schema.org/draft-04/schema" /></VisualStudio></ProjectExtensions>
+  <ItemGroup>
+    <Reference Include="HttpHelper">
+      <HintPath>bin\HttpHelper.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

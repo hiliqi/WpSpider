@@ -16,7 +16,8 @@ namespace WpSpider.Pub
         IConfiguration configuration;
         string webroot;
         WebClient webClient = new WebClient();
-        PubContext pubContext = new PubContext();
+        EFContext pubContext = new EFContext();
+        SugarContext sugarContext = new SugarContext();
 
         public PubHelper()
         {
@@ -27,7 +28,7 @@ namespace WpSpider.Pub
             webroot = configuration.GetSection("webroot").Value;
         }
 
-        public void Post(string title, string html, long category, long author)
+        public void Post(string title, string html, long category, long author, List<string> tags)
         {
             try
             {
@@ -48,30 +49,50 @@ namespace WpSpider.Pub
                     PostName = Guid.NewGuid().ToString(),
                     PostContentFilter = string.Empty
                 };
-                using (var tran = pubContext.Database.BeginTransaction())
+                var id = sugarContext.Db.Insertable(post).ExecuteReturnIdentity();
+                Console.WriteLine($"成功发布文章{title}，id为{id}");
+                var c = sugarContext.Db.Queryable<TermTaxonomy>().Where(t => t.TermId == category).First();
+                long termTaxonomyId = c == null ? 1 : c.Id; //查出该分类对应的TermTaxonomy的ID
+                var relationships = new Relationships()
                 {
-                    try
+                    PostId = id,
+                    CateId = termTaxonomyId
+                };
+                sugarContext.Db.Insertable(relationships).ExecuteCommand();
+                foreach (var tag in tags)
+                {
+                    var term = sugarContext.Db.Queryable<Terms>().Where(t => t.Name == tag).First();
+                    if (term == null) //如果该tag不存在，新建标签以及对应的TermTaxonomy
                     {
-                        pubContext.Posts.Add(post);
-                        pubContext.SaveChanges();
-                        long postId = post.Id;
-                        var relationships = new Relationships()
+                        term = new Terms()
                         {
-                            PostId = postId,
-                            CateId = category
+                            Name = tag,
+                            Slug = Common.CommonHelper.GetPinyin(tag),
+                            TermGroup = 0
                         };
-                        pubContext.Relationships.Add(relationships);
-                        pubContext.SaveChanges();                        
-                        tran.Commit();
+                        term.Id = sugarContext.Db.Insertable(term).ExecuteReturnIdentity();
+                        var termTaxonomy = new TermTaxonomy()
+                        {
+                            TermId = term.Id,
+                            Taxonomy = "post_tag",
+                            Parent = 0,
+                            Count = 0,
+                            Description = "post_tag"
+                        };
+                        termTaxonomyId = sugarContext.Db.Insertable(termTaxonomy).ExecuteReturnIdentity();
                     }
-                    catch (Exception ex)
+                    else //如果tag已存在，则查出它在termTaxonomy表中的termTaxonomyId
                     {
-                        Console.WriteLine(ex.Message);
-                        File.AppendAllText("err.txt", ex.Message + Environment.NewLine);
-                        tran.Rollback();
+                        termTaxonomyId = sugarContext.Db.Queryable<TermTaxonomy>().Where(t => t.TermId == term.Id).First().Id;
                     }
+                    relationships = new Relationships()
+                    {
+                        PostId = id,
+                        CateId = termTaxonomyId
+                    };
+                    sugarContext.Db.Insertable(relationships).ExecuteCommand();
                 }
-                Console.WriteLine("成功发布文章" + title);
+
             }
             catch (Exception ex)
             {

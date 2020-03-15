@@ -51,7 +51,7 @@
             },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "MySql.Data.EntityFrameworkCore": {
               "target": "Package",
@@ -61,9 +61,17 @@
               "target": "Package",
               "version": "[12.0.3, )"
             },
+            "RuPeng.Common.NetCore": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "TinyPinyin.Core.Standard": {
               "target": "Package",
               "version": "[1.0.0, )"
+            },
+            "sqlSugarCore": {
+              "target": "Package",
+              "version": "[5.0.0.11, )"
             }
           },
           "imports": [

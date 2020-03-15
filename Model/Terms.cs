@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -7,16 +8,16 @@ namespace WpSpider.Model
 {
     public class Terms
     {
-        [Column("term_id")]
+        [SugarColumn(ColumnName = "term_id", IsPrimaryKey = true, IsIdentity = true)]
         public long Id { get; set; }
 
-        [Column("name")]
+        [SugarColumn(ColumnName = "name")]
         public string Name { get; set; }
 
-        [Column("slug")]
+        [SugarColumn(ColumnName = "slug")]
         public string Slug { get; set; }
 
-        [Column("term_group")]
+        [SugarColumn(ColumnName = "term_group")]
         public int TermGroup { get; set; }
     }
 }
