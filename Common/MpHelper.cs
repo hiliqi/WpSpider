@@ -61,7 +61,7 @@ namespace WpSpider
 
                 }
 
-                var imgs = doc.QuerySelectorAll("#js_content>p>img");
+                var imgs = doc.QuerySelectorAll("#js_content img");
                 var date = DateTime.Now.ToString("yyyy-MM-dd");
                 var downloadDir = Path.Combine(webroot, "wp-content/uploads/" + date); //拼接图片下载目录
                 if (!Directory.Exists(downloadDir))
@@ -79,6 +79,8 @@ namespace WpSpider
                     img.RemoveAttribute("data-ratio");
                     img.RemoveAttribute("data-type");
                     img.RemoveAttribute("style");
+                    img.RemoveAttribute("class");
+                    img.RemoveAttribute("data-w");
                 }
 
 
