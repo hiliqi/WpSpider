@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[0.13.0, )"
             },
+            "Flurl": {
+              "target": "Package",
+              "version": "[2.8.2, )"
+            },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[3.1.2, )"

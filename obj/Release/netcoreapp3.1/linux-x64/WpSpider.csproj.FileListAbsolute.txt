@@ -250,3 +250,5 @@ D:\开发\WpSpider\bin\Release\netcoreapp3.1\linux-x64\SqlSugar.dll
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\linux-x64\System.Data.SqlClient.dll
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\linux-x64\libe_sqlite3.so
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\linux-x64\HttpHelper.dll
+D:\开发\WpSpider\bin\Release\netcoreapp3.1\linux-x64\Config\Blfuman.json
+D:\开发\WpSpider\bin\Release\netcoreapp3.1\linux-x64\Flurl.dll

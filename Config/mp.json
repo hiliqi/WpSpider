@@ -1,7 +1,7 @@
 {
   "category": 1, //后台分类id
   "author": 1, //后台作者id
-  "webroot": "d:/wordpress", //网站物理根目录
+  "webroot": "D:/www/wp", //网站物理根目录
   "filters": [ //过滤代码，双引号中的HTML代码会逐个过滤
     "img[data-type*=\"gif\"]",
     "p[style*=\"white-space\"]"
@@ -9,8 +9,13 @@
   "add": [ //自定义插入的内容
     {
       "parent": "#js_content", //要插入的父元素的选择器代码
-      "tag": "p", //要插入的元素标签名
-      "content": "<p><span style=\"color: red;\">点击前往阅读全部章节</span></p>"
+      "tag": "div", //要插入的最外层元素标签名
+      "content": "<div class=\"article-body\"><p><strong>更多精彩后续章节已火热上线！</strong></p><p><strong>完整版章节请点击下方图片跳转观看！</strong></p></div>"
+    },
+    {
+      "parent": "#js_content", //要插入的父元素的选择器代码
+      "tag": "div", //要插入的元素标签名
+      "content": "<div class=\"article-advertisement\"><a href=\"http://normal.jjxs518.cn/?uid=0&amp;cid=0050&amp;sign=5081f00db2de0e3d&amp;pid=jjmanhua2&amp;noShare=true\"><img src=\"http://www.manhuawuu.com/wp-content/uploads/2020/03/1.gif\" width=\"100%\"></a></div>"
     }
   ],
   "replace": [ //自定义替换的内容

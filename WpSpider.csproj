@@ -6,16 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Config\Blfuman.json" />
     <None Remove="Config\main.json" />
     <None Remove="Config\manhuawuu.json" />
     <None Remove="Config\mp.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Config\Blfuman.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Config\Main.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Config\manhuawuu.json">
+    <Content Include="Config\Manhuawuu.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\Mp.json">
@@ -26,6 +30,7 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.13.0" />
     <PackageReference Include="AngleSharp.Js" Version="0.13.0" />
+    <PackageReference Include="Flurl" Version="2.8.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.19" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -40,6 +45,6 @@
     </Reference>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties config_4blfuman_1json__JsonSchema="http://json-schema.org/draft-04/schema" /></VisualStudio></ProjectExtensions>
 
 </Project>

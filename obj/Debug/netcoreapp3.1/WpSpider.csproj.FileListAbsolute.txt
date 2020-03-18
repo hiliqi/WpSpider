@@ -85,3 +85,5 @@ D:\开发\WpSpider\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\Syst
 D:\开发\WpSpider\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
 D:\开发\WpSpider\bin\Debug\netcoreapp3.1\HttpHelper.dll
 D:\开发\WpSpider\bin\Debug\netcoreapp3.1\RuPeng.Common.NetCore.dll
+D:\开发\WpSpider\bin\Debug\netcoreapp3.1\Config\Blfuman.json
+D:\开发\WpSpider\bin\Debug\netcoreapp3.1\Flurl.dll

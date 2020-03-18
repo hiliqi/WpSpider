@@ -35,94 +35,96 @@ namespace WpSpider
            (sender, cert, chain, sslPolicyErrors) => true;
         }
 
-        public void ComeOn(List<string> urls)
+        public void ComeOn(string item)
         {
             var filters = configuration.GetSection("filters").GetChildren();
             var domain = configuration.GetSection("domain").Value;
-            foreach (var item in urls)
+            Console.WriteLine("开始采集" + item);
+            try
             {
-                Console.WriteLine("开始采集" + item);
-                try
+                var html = ReqHelper.GetHtml(item
+                           , ugent: "Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12A365 MicroMessenger/5.4.1 NetType/WIFI");
+                var parse = new HtmlParser();
+                var doc = parse.ParseDocument(html);
+
+                //开始进行元素过滤
+                foreach (var filter in filters)
                 {
-                    var html = ReqHelper.GetHtml(item
-                               , ugent: "Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12A365 MicroMessenger/5.4.1 NetType/WIFI");
-                    var parse = new HtmlParser();
-                    var doc = parse.ParseDocument(html);
-
-                    //开始进行元素过滤
-                    foreach (var filter in filters)
+                    var eles = doc.QuerySelectorAll(filter.Value); //根据写的规则进行过滤
+                    if (eles.Length > 0)
                     {
-                        var eles = doc.QuerySelectorAll(filter.Value); //根据写的规则进行过滤
-                        if (eles.Length > 0)
+                        foreach (var ele in eles)
                         {
-                            foreach (var ele in eles)
-                            {
-                                ele.Remove();
-                            }
-                        }
-
-                    }
-
-                    var imgs = doc.QuerySelectorAll("#js_content img");
-                    var date = DateTime.Now.ToString("yyyy-MM-dd");
-                    var downloadDir = Path.Combine(webroot, "wp-content/uploads/" + date); //拼接图片下载目录
-                    if (!Directory.Exists(downloadDir))
-                    {
-                        Directory.CreateDirectory(downloadDir);
-                    }
-                    foreach (IHtmlImageElement img in imgs)
-                    {
-                        var imgUrl = img.GetAttribute("data-src");
-                        var fileName = Guid.NewGuid().ToString() + ".jpg";
-                        wc.DownloadFile(imgUrl, Path.Combine(downloadDir, fileName));
-                        Console.WriteLine("下载" + imgUrl + "到" + downloadDir);
-                        img.Source = domain + "/wp-content/uploads/" + date + "/" + fileName;//设置img的src为下载路径
-                        img.RemoveAttribute("data-src"); 
-                        img.RemoveAttribute("data-copyright"); 
-                        img.RemoveAttribute("data-ratio"); 
-                        img.RemoveAttribute("data-s"); 
-                        img.RemoveAttribute("data-type");
-                        img.RemoveAttribute("data-w");
-                    }
-
-
-                    var addConfigs = configuration.GetSection("add").GetChildren();
-                    if (addConfigs.Count() > 0)
-                    {
-                        foreach (var config in addConfigs)
-                        {
-                            var node = doc.QuerySelector(config["parent"]); //拿到父节点  
-                            var context = BrowsingContext.New();
-                            var document = context.OpenAsync(m => m.Content(config["content"])).Result;
-                            var element = document.QuerySelector(config["tag"]);
-                            node.AppendChild(element); //插入节点
+                            ele.Remove();
                         }
                     }
 
-
-                    var title = doc.QuerySelector("h2").TextContent.Trim();
-                    var style = doc.QuerySelector("style").OuterHtml;
-                    var content = doc.QuerySelector("#js_content").OuterHtml;
-                    var replaces = configuration.GetSection("replace").GetChildren();
-                    foreach (var replace in replaces)
-                    {
-                        if (!string.IsNullOrEmpty(replace["old"].ToString()) && !string.IsNullOrEmpty(replace["new"].ToString()))
-                        {
-                            content = content.Replace(replace["old"].ToString(), replace["new"].ToString());
-                        }
-                        
-                    }
-                    var htmlStr = style + "<p></p>" + content;
-
-                    var addConfig = configuration.GetSection("add").GetChildren();
-                    pubHelper.Post(title, htmlStr, category, author, new List<string>());
                 }
-                catch (Exception ex)
+
+                var imgs = doc.QuerySelectorAll("#js_content>p>img");
+                var date = DateTime.Now.ToString("yyyy-MM-dd");
+                var downloadDir = Path.Combine(webroot, "wp-content/uploads/" + date); //拼接图片下载目录
+                if (!Directory.Exists(downloadDir))
                 {
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.StackTrace.ToString());
-                    File.AppendAllText("err.txt", ex.Message + Environment.NewLine);
+                    Directory.CreateDirectory(downloadDir);
                 }
+                foreach (IHtmlImageElement img in imgs)
+                {
+                    var imgUrl = img.GetAttribute("data-src");
+                    var fileName = Guid.NewGuid().ToString() + ".jpg";
+                    wc.DownloadFile(imgUrl, Path.Combine(downloadDir, fileName));
+                    Console.WriteLine("下载" + imgUrl + "到" + downloadDir);
+                    img.SetAttribute("src", Flurl.Url.Combine(domain, "/wp-content/uploads/" + date + "/" + fileName)); //设置img的src为下载路径 
+                    img.RemoveAttribute("data-src");
+                    img.RemoveAttribute("data-ratio");
+                    img.RemoveAttribute("data-type");
+                    img.RemoveAttribute("style");
+                }
+
+
+                var addConfigs = configuration.GetSection("add").GetChildren();
+                if (addConfigs.Count() > 0)
+                {
+                    foreach (var config in addConfigs)
+                    {
+                        var node = doc.QuerySelector(config["parent"]); //拿到父节点  
+                        var context = BrowsingContext.New();
+                        var document = context.OpenAsync(m => m.Content(config["content"])).Result;
+                        var element = document.QuerySelector(config["tag"]);
+                        node.AppendChild(element); //插入节点
+
+                    }
+                }
+
+                var el = doc.QuerySelector("#js_content");
+                el.RemoveAttribute("style");
+                var title = doc.QuerySelector("h2").TextContent.Trim();
+                //var style = doc.QuerySelector("style").InnerHtml;
+                var content = el.OuterHtml;
+                var replaces = configuration.GetSection("replace").GetChildren();
+                foreach (var replace in replaces)
+                {
+                    if (!string.IsNullOrEmpty(replace["old"].ToString()) && !string.IsNullOrEmpty(replace["new"].ToString()))
+                    {
+                        content = content.Replace(replace["old"].ToString(), replace["new"].ToString());
+                    }
+
+                }
+                //StringBuilder sb = new StringBuilder();
+                //sb.AppendLine("<style>");
+                //sb.AppendLine(style);
+                //sb.AppendLine("</style>");
+                //sb.AppendLine(content);
+                //var htmlStr = sb.ToString();
+
+                var addConfig = configuration.GetSection("add").GetChildren();
+                pubHelper.Post(title, content, category, author, new List<string>());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace.ToString());
+                File.AppendAllText("err.txt", ex.Message + Environment.NewLine);
             }
         }
     }

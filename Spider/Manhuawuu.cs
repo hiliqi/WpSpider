@@ -26,7 +26,7 @@ namespace WpSpider.Spider
         {
             var builder = new ConfigurationBuilder()
              .SetBasePath(Path.Combine(AppContext.BaseDirectory))
-             .AddJsonFile("Config/manhuawuu.json", optional: true, reloadOnChange: true);
+             .AddJsonFile("Config/Manhuawuu.json", optional: true, reloadOnChange: true);
             configuration = builder.Build();
             author = long.Parse(configuration.GetSection("author").Value);
             category = long.Parse(configuration.GetSection("category").Value);
@@ -35,8 +35,6 @@ namespace WpSpider.Spider
 
         public void Go()
         {
-            //try
-            //{
                 var cate = configuration.GetSection("cate").Value;
                 var start = int.Parse(configuration.GetSection("start").Value);
                 var last = int.Parse(configuration.GetSection("last").Value);
@@ -65,14 +63,7 @@ namespace WpSpider.Spider
                     Console.WriteLine(ex.InnerException.Message);
                     Console.WriteLine(ex.StackTrace);
                 }
-            }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    Console.WriteLine(ex.InnerException.Message);
-            //    Console.WriteLine(ex.StackTrace);
-            //}
+            } 
         }
 
         public void GetContent(string url)

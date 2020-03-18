@@ -41,6 +41,15 @@
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
         }
       },
+      "Flurl/2.8.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Flurl.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Flurl.dll": {}
+        }
+      },
       "Google.Protobuf/3.6.1": {
         "type": "package",
         "dependencies": {
@@ -2369,6 +2378,15 @@
         },
         "runtime": {
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
+        }
+      },
+      "Flurl/2.8.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Flurl.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Flurl.dll": {}
         }
       },
       "Google.Protobuf/3.6.1": {
@@ -4777,6 +4795,25 @@
         "lib/netstandard2.0/BouncyCastle.Crypto.xml",
         "lib/xamarinios/BouncyCastle.Crypto.dll",
         "lib/xamarinios/BouncyCastle.Crypto.xml"
+      ]
+    },
+    "Flurl/2.8.2": {
+      "sha512": "3VEYAqkGTGHgla4xuyEB4d8XGLeMX2k05C4WfI7YmKQHsL7RhoGu3L6h1xsKKTPFWjEL13p09XOIGwD1pQ86dg==",
+      "type": "package",
+      "path": "flurl/2.8.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "flurl.2.8.2.nupkg.sha512",
+        "flurl.nuspec",
+        "lib/net40/Flurl.dll",
+        "lib/net40/Flurl.xml",
+        "lib/netstandard1.0/Flurl.dll",
+        "lib/netstandard1.0/Flurl.xml",
+        "lib/netstandard1.3/Flurl.dll",
+        "lib/netstandard1.3/Flurl.xml",
+        "lib/netstandard2.0/Flurl.dll",
+        "lib/netstandard2.0/Flurl.xml"
       ]
     },
     "Google.Protobuf/3.6.1": {
@@ -10642,6 +10679,7 @@
     ".NETCoreApp,Version=v3.1": [
       "AngleSharp >= 0.13.0",
       "AngleSharp.Js >= 0.13.0",
+      "Flurl >= 2.8.2",
       "Microsoft.Extensions.Configuration.Json >= 3.1.2",
       "MySql.Data.EntityFrameworkCore >= 8.0.19",
       "Newtonsoft.Json >= 12.0.3",
@@ -10698,6 +10736,10 @@
           "AngleSharp.Js": {
             "target": "Package",
             "version": "[0.13.0, )"
+          },
+          "Flurl": {
+            "target": "Package",
+            "version": "[2.8.2, )"
           },
           "Microsoft.Extensions.Configuration.Json": {
             "target": "Package",

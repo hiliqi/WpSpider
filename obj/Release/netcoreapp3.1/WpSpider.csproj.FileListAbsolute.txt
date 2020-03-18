@@ -85,3 +85,5 @@ D:\开发\WpSpider\bin\Release\netcoreapp3.1\runtimes\win8-arm\native\e_sqlite3.
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\HttpHelper.dll
+D:\开发\WpSpider\bin\Release\netcoreapp3.1\Config\Blfuman.json
+D:\开发\WpSpider\bin\Release\netcoreapp3.1\Flurl.dll
