@@ -3,13 +3,13 @@
   "author": 1, //后台作者id
   "webroot": "D:/www/wp", //网站物理根目录
   "filters": [ //过滤代码，双引号中的HTML代码会逐个过滤
-    "img[data-type*=\"gif\"]",
-    "p[style*=\"white-space\"]"
+    "#js_toobar3",
+    "section"
   ],
   "add": [ //自定义插入的内容
     {
       "parent": "#js_content", //要插入的父元素的选择器代码
-      "tag": "div", //要插入的最外层元素标签名
+      "tag": "div", //要插入的元素标签名
       "content": "<div class=\"article-body\"><p><strong>更多精彩后续章节已火热上线！</strong></p><p><strong>完整版章节请点击下方图片跳转观看！</strong></p></div>"
     },
     {
@@ -23,5 +23,12 @@
       "old": "",
       "new": ""
     }
+  ],
+  "imgRemove": {
+    "first": "false",
+    "last": "true"
+  },
+  "urls": [
+    "http://mp.weixin.qq.com/s?__biz=MzI5MTkzMzY2OQ==&mid=2247485099&idx=2&sn=037bfa0c1ffe0e0dfda38fe11caf5fe6&chksm=ec085a21db7fd3371d544f72043f38a611af3eca2d17f76b84b65743123d92529221d3634c7f&scene=27#wechat_redirect"
   ]
 }

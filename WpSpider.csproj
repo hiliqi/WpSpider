@@ -6,16 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Config\Blfuman.json" />
     <None Remove="Config\main.json" />
     <None Remove="Config\manhuawuu.json" />
     <None Remove="Config\mp.json" />
+    <None Remove="Config\Uu565.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Config\Blfuman.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Config\Main.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -23,6 +20,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\Mp.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Uu565.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -45,6 +45,6 @@
     </Reference>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties config_4blfuman_1json__JsonSchema="http://json-schema.org/draft-04/schema" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>
