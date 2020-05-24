@@ -3,8 +3,7 @@
   "author": 1, //后台作者id
   "webroot": "D:/www/wp", //网站物理根目录
   "filters": [ //过滤代码，双引号中的HTML代码会逐个过滤
-    "#js_toobar3",
-    "section"
+    
   ],
   "add": [ //自定义插入的内容
     {
@@ -26,9 +25,9 @@
   ],
   "imgRemove": {
     "first": "false",
-    "last": "true"
+    "last": "false"
   },
   "urls": [
-    "http://mp.weixin.qq.com/s?__biz=MzI5MTkzMzY2OQ==&mid=2247485099&idx=2&sn=037bfa0c1ffe0e0dfda38fe11caf5fe6&chksm=ec085a21db7fd3371d544f72043f38a611af3eca2d17f76b84b65743123d92529221d3634c7f&scene=27#wechat_redirect"
+    "https://mp.weixin.qq.com/s/qEyPDJcsrHrEedZ6DYbHNQ"
   ]
 }

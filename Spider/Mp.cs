@@ -113,7 +113,6 @@ namespace WpSpider.Spider
                     var el = doc.QuerySelector("#js_content");
                     el.RemoveAttribute("style");
                     var title = doc.QuerySelector("h2").TextContent.Trim();
-                    //var style = doc.QuerySelector("style").InnerHtml;
                     var content = el.OuterHtml;
                     var replaces = configuration.GetSection("replace").GetChildren();
                     foreach (var replace in replaces)
@@ -123,15 +122,9 @@ namespace WpSpider.Spider
                             content = content.Replace(replace["old"].ToString(), replace["new"].ToString());
                         }
 
-                    }
-                    //StringBuilder sb = new StringBuilder();
-                    //sb.AppendLine("<style>");
-                    //sb.AppendLine(style);
-                    //sb.AppendLine("</style>");
-                    //sb.AppendLine(content);
-                    //var htmlStr = sb.ToString();
+                    }                   
 
-                    pubHelper.Post(title, content, category, author, new List<string>());
+                    pubHelper.Post(title, content, category, author);
                 }
                 catch (Exception ex)
                 {

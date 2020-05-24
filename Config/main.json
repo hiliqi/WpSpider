@@ -1,7 +1,6 @@
 {
   "dbConnstr": "server=localhost;database=wp;user=root;password=root;Character Set=utf8 ", //网站数据库连接字符串
   "prefix": "wp_", //数据表前缀
-  "domain": "http://wpp.com/",
   "webroot": "d:/www/wordpress",
-  "excutor": "Uu565" //可配置项：Mp, 多个选项用|隔开
+  "excutor": "Jiepai" //可配置项：Mp, 多个选项用|隔开
 }

@@ -6,36 +6,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Config\jiepai.json" />
     <None Remove="Config\main.json" />
-    <None Remove="Config\manhuawuu.json" />
     <None Remove="Config\mp.json" />
-    <None Remove="Config\Uu565.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Config\Main.json">
+    <Content Include="Config\jiepai.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Config\Manhuawuu.json">
+    <Content Include="Config\Main.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\Mp.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Config\Uu565.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="0.13.0" />
-    <PackageReference Include="AngleSharp.Js" Version="0.13.0" />
+    <PackageReference Include="AngleSharp" Version="0.14.0" />
+    <PackageReference Include="AngleSharp.Js" Version="0.14.0" />
     <PackageReference Include="Flurl" Version="2.8.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.4" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.19" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RuPeng.Common.NetCore" Version="1.0.0" />
-    <PackageReference Include="sqlSugarCore" Version="5.0.0.11" />
+    <PackageReference Include="sqlSugarCore" Version="5.0.0.14" />
     <PackageReference Include="TinyPinyin.Core.Standard" Version="1.0.0" />
   </ItemGroup>
 
@@ -45,6 +41,6 @@
     </Reference>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties config_4jiepai_1json__JsonSchema="http://json-schema.org/draft-04/schema" /></VisualStudio></ProjectExtensions>
 
 </Project>

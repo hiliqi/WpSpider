@@ -1,6 +1,5 @@
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\WpSpider.exe
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\Config\main.json
-D:\开发\WpSpider\bin\Release\netcoreapp3.1\Config\manhuawuu.json
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\Config\mp.json
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\WpSpider.deps.json
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\WpSpider.runtimeconfig.json
@@ -86,4 +85,6 @@ D:\开发\WpSpider\bin\Release\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\Sy
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\HttpHelper.dll
 D:\开发\WpSpider\bin\Release\netcoreapp3.1\Flurl.dll
-D:\开发\WpSpider\bin\Release\netcoreapp3.1\Config\Uu565.json
+D:\开发\WpSpider\bin\Release\netcoreapp3.1\Config\jiepai.json
+D:\开发\WpSpider\obj\Release\netcoreapp3.1\WpSpider.csproj.CoreCompileInputs.cache
+D:\开发\WpSpider\obj\Release\netcoreapp3.1\WpSpider.genruntimeconfig.cache
